@@ -22,3 +22,16 @@ You can redefine them with:
 
 (swap! *name* (constant *new-value*))
 
+Or
+
+(reset! *name* *new-value*)
+
+h3. Example function
+
+You can change the bob by defining the following function in the user namespace:
+
+(defn my-bob [x y]
+	(swap! bob-colour (fn [n] (mod y 250)))
+	(draw-bob-circle x y (+ 20 (/ x 2))))
+
+(reset! draw-bob my-bob)
