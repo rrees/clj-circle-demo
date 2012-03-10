@@ -6,4 +6,19 @@ h2. Running in the repl
 
 (use :reload-all '[clj-circle-demo.core :as demo])
 
-(use '[rosado.processing.applet :as papplet])
+(demo/start)
+
+(demo/stop)
+
+h2. Interacting
+
+Most of the constants are defined as atoms
+
+* radar-length
+* radar-colour (monochrome)
+* sweep-increment
+
+You can redefine them with:
+
+(swap! *name* (constant *new-value*))
+

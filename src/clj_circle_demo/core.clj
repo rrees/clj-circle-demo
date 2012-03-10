@@ -5,13 +5,13 @@
 
 (def screen-size 800)
 
-(def radar-range (atom 400))
+(def radar-length (atom 350))
 
 (def radar-colour (atom 125))
 
 (def direction (atom 0))
 
-(def sweep-increment (atom 0.1))
+(def sweep-increment (atom 0.01))
 
 (defn radar-centre []
 	[(/ screen-size 2) (/ screen-size 2)])
@@ -19,7 +19,7 @@
 (defn radar-end [direction start-x start-y]
 	(let [ sine (sin direction)
 		cosine (cos direction)]
-	[(+ (* sine @radar-range) start-x) (+ (* cosine @radar-range) start-y)]))
+	[(+ (* sine @radar-length) start-x) (+ (* cosine @radar-length) start-y)]))
 
 (defn increment-sweep [current-direction]
 	(if (> current-direction (* Math/PI 2))
@@ -30,10 +30,8 @@
 	(let [[centre-x centre-y] (radar-centre)
 			[end-x end-y] (radar-end @direction centre-x centre-y)]
 		(stroke @radar-colour)
-		(swap! direction inc)
-		(line centre-x centre-y end-x end-y)
-		)
-)
+		(swap! direction increment-sweep)
+		(line centre-x centre-y end-x end-y)))
 
 (defn setup []
    (smooth)
@@ -55,3 +53,5 @@
 
 (defn stop-demo []
 	(stop radar))
+
+(defn constant [new-value] (fn[current-value] new-value))
