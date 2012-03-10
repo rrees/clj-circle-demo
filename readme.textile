@@ -1,3 +1,9 @@
 h1. clj-circle-demo
 
 An example of Clojure interactivity
+
+h2. Running in the repl
+
+(use :reload-all '[clj-circle-demo.core :as demo])
+
+(use '[rosado.processing.applet :as papplet])
