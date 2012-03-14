@@ -4,11 +4,11 @@ An example of Clojure interactivity
 
 h2. Running in the repl
 
-(use :reload-all '[clj-circle-demo.core :as demo])
+(use :reload-all 'clj-circle-demo.core)
 
-(demo/start)
+(start-demo)
 
-(demo/stop)
+(stop-demo)
 
 h2. Interacting
 
